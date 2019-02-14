@@ -2,15 +2,16 @@ class ArrayBufferConverter {
   static load(str) {
     const buffer = new ArrayBuffer(str.length * 2);
     const bufferView = new Uint16Array(buffer);
-    for (let i = 0; i < str.length; i++) {
-      bufferView[i] = str.charCodeAt(i);
-    }
+
+    str.split('').forEach((el, i) => {
+      bufferView[i] = el.charCodeAt();
+    });
+
     return buffer;
   }
 
   static toString(buffer) {
-    const bufferView = new Uint16Array(buffer);
-    return bufferView.reduce((acc, el) => acc + String.fromCharCode(el), '');
+    return String.fromCharCode(...new Uint16Array(buffer));
   }
 }
 
