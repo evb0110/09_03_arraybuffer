@@ -3,7 +3,7 @@ class ArrayBufferConverter {
     const buffer = new ArrayBuffer(str.length * 2);
     const bufferView = new Uint16Array(buffer);
 
-    str.split('').forEach((el, i) => {
+    [...str].forEach((el, i) => {
       bufferView[i] = el.charCodeAt();
     });
 
